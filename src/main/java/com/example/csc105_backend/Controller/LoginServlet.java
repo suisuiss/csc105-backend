@@ -19,11 +19,12 @@ try(PrintWriter out = response.getWriter()){
     HttpSession session;
     int userid = loginOperation.checkLogin(request.getParameter("username"),request.getParameter("password"));
     if(userid==0){
-
+    getServletContext().getRequestDispatcher("").forward(request,response);
     }
     else{
         session= request.getSession();
         session.setAttribute("userid",userid);
+        request.getRequestDispatcher("RegisterServlet").forward(request,response);
     }
 }
     }
