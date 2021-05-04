@@ -12,7 +12,7 @@ public class LoginOperation {
     public int checkLogin (String username, String password){
         try{
             connection = DBconnection.getMySQLConnection();
-            preparedStatement=connection.prepareStatement("SELECT * "+"FROM User WHERE username LIKE ?");
+            preparedStatement=connection.prepareStatement("SELECT * "+"FROM User WHERE username OR email LIKE ?");
             preparedStatement.setString(1,username);
             resultSet= preparedStatement.executeQuery();
             if(resultSet.next()){
