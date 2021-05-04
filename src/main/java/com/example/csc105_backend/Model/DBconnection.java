@@ -1,9 +1,7 @@
-package com.example.csc105_backend.model;
+package com.example.csc105_backend.Model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class DBconnection {
     private static final String db_URL = "jdbc:mysql://csproject.sit.kmutt.ac.th:3306/db63130500211";

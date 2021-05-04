@@ -1,4 +1,4 @@
-package com.example.csc105_backend.model;
+package com.example.csc105_backend.Model;
 
 import java.sql.ResultSet;
 
