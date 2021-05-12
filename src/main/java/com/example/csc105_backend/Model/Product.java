@@ -1,30 +1,21 @@
 package com.example.csc105_backend.Model;
 
 import java.sql.ResultSet;
+import java.math.BigDecimal;
 
 public class Product {
     int productId;
     int buyerId;
     int sellerId;
     String productName;
-    double productPrice;
+    BigDecimal productPrice;
     int productAmount;
     String productDetails;
     String productDesc;
     String productCategory;
+    String productPics;
 
-    public Product (ResultSet resultSet)throws Exception{
-        productId=resultSet.getInt("product_id");
-        buyerId=resultSet.getInt("buyer_id");
-        sellerId=resultSet.getInt("seller_id");
-        productName=resultSet.getString("product_name");
-        productPrice=resultSet.getInt("product_price");
-        productAmount=resultSet.getInt("product_amount");
-        productDetails=resultSet.getString("product_details");
-        productDesc=resultSet.getString("product_desc");
-        productCategory=resultSet.getString("product_category");
-    }
-    public Product(int productId, int buyerId, int sellerId, String productName, double productPrice, int productAmount, String productDetails, String productDesc, String productCategory) {
+    public Product(int productId, int buyerId, int sellerId, String productName, BigDecimal productPrice, int productAmount, String productDetails, String productDesc, String productCategory,String productPics) {
         this.productId = productId;
         this.buyerId = buyerId;
         this.sellerId = sellerId;
@@ -34,6 +25,11 @@ public class Product {
         this.productDetails = productDetails;
         this.productDesc = productDesc;
         this.productCategory = productCategory;
+        this.productPics=productPics;
+    }
+
+    public Product() {
+        super();
     }
 
     public int getProductId() {
@@ -68,11 +64,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public double getProductPrice() {
+    public BigDecimal getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(double productPrice) {
+    public void setProductPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
     }
 
@@ -106,5 +102,13 @@ public class Product {
 
     public void setProductCategory(String productCategory) {
         this.productCategory = productCategory;
+    }
+
+    public String getProductPics() {
+        return productPics;
+    }
+
+    public void setProductPics(String productPics) {
+        this.productPics = productPics;
     }
 }

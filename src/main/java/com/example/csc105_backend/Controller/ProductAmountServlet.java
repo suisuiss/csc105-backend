@@ -1,11 +1,9 @@
 package com.example.csc105_backend.Controller;
 
-import com.example.csc105_backend.Model.Error;
-import com.example.csc105_backend.Model.SignupOperation;
+import com.example.csc105_backend.Model.UpdateProductAmount;
 import com.google.gson.Gson;
 import org.json.JSONObject;
-
-
+import com.example.csc105_backend.Model.Error;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -14,8 +12,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
-@WebServlet(name = "RegisterServlet", value = "/signup")
-public class RegisterServlet extends HttpServlet {
+@WebServlet(name = "ProductAmountServlet", value = "/product/amount")
+public class ProductAmountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try (PrintWriter out = response.getWriter();
@@ -28,23 +26,18 @@ public class RegisterServlet extends HttpServlet {
             }
 
             JSONObject jsonObject = new JSONObject(json);
-            String firstname = (String) jsonObject.get("firstname");
-            String lastname = (String) jsonObject.get("lastname");
-            String address = (String) jsonObject.get("address");
-            String phoneNumber = (String) jsonObject.get("phoneNumber");
-            String email = (String) jsonObject.get("email");
-            String username = (String) jsonObject.get("username");
-            String password = (String) jsonObject.get("password");
+            Integer productID = (Integer) jsonObject.get("productID");
+            Integer productAmount = (Integer) jsonObject.get("productAmount");
 
-            SignupOperation signupOperation = new SignupOperation();
-            boolean signup = signupOperation.register(firstname, lastname, address, phoneNumber, email, username, password);
+            UpdateProductAmount updateProductAmount = new UpdateProductAmount();
+            boolean result = updateProductAmount.updateProductAmt(productID, productAmount);
 
-            if (signup) {
-                json = new Gson().toJson(signup);
+            if (result) {
+                json = new Gson().toJson(result);
             } else {
                 Error error = new Error();
-                error.setErrorCode("400");
-                error.setErrorMsg("Fail to Register");
+                 error.setErrorCode("400");
+                error.setErrorMsg("Fail to Update Amount Product");
                 json = new Gson().toJson(error);
             }
 
@@ -52,9 +45,9 @@ public class RegisterServlet extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             out.print(json);
             out.flush();
-        }
-        catch (Exception e){
+        }catch(Exception e) {
             e.printStackTrace();
         }
     }
 }
+

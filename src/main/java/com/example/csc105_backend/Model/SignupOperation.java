@@ -5,41 +5,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class SignupOperation {
-    Connection connection;
-    PreparedStatement preparedStatement;
-    ResultSet resultSet;
-    Signup signup;
-public String register(String name,String surname,String address,String phoneNumber,String email,String username,String password,int userid) {
-    try {
-        connection = DBconnection.getMySQLConnection();
-        preparedStatement = connection.prepareStatement("SELECT * FROM User WHERE firstname,lastname,address,phoneNumber,email,username,password");
-        preparedStatement.setInt(1,userid);
-        resultSet = preparedStatement.executeQuery();
-        if(resultSet.next()){
-            Signup signup = new Signup(resultSet);
-            preparedStatement = connection.prepareStatement("INSERT INTO User (firstname,lastname,address,phoneNumber,email,username,password) VALUES(?)");
-            preparedStatement.setString(1,resultSet.getString("firstname"));
-            preparedStatement.setString(1,resultSet.getString("lastname"));
-            preparedStatement.setString(1,resultSet.getString("address"));
-            preparedStatement.setString(1,resultSet.getString("phoneNumber"));
-            preparedStatement.setString(1,resultSet.getString("email"));
-            preparedStatement.setString(1,resultSet.getString("username"));
-            preparedStatement.setString(1,resultSet.getString("password"));
-            preparedStatement.executeUpdate();
-            return "Successful Register";
-        }
-    }catch (Exception e){
-        e.printStackTrace();
-    }finally {
-        try {
-            resultSet.close();
-            preparedStatement.close();
-            connection.close();
-        }catch (Exception e){
+    public boolean register(String firstname,String lastname,String address,String phoneNumber,String email,String username,String password)throws Exception {
+        boolean result = false;
+        try(Connection connection=DBconnection.getMySQLConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO User(email, firstname, lastname, username, password, address, phoneNumber) VALUES(?, ?, ?, ?, ?, ?, ?)")){
+            int index = 1;
+            preparedStatement.setString(index++,email);
+            preparedStatement.setString(index++,firstname);
+            preparedStatement.setString(index++,lastname);
+            preparedStatement.setString(index++,username);
+            preparedStatement.setString(index++,password);
+            preparedStatement.setString(index++,address);
+            preparedStatement.setString(index++,phoneNumber);
+            int rs = preparedStatement.executeUpdate();
+            if(rs > 0) {
+                result = true;
+            }
+        }catch (Exception e) {
             e.printStackTrace();
         }
+        return result;
     }
-    return "FAILED REGISTER";
-}
-
 }

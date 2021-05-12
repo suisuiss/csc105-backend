@@ -23,7 +23,7 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
     public User (ResultSet resultSet) throws Exception{
-        userid=resultSet.getInt("userid");
+        userid=resultSet.getInt("user_id");
         email = resultSet.getString("email");
         firstname=resultSet.getString("firstname");
         lastname=resultSet.getString("lastname");

@@ -4,22 +4,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class LoginOperation {
-    public Login checkLogin (String username, String password){
-        Login login = null;
+public class FindUserById {
+    public User findUserById (int userId){
+        User user = null;
         try(Connection connection=DBconnection.getMySQLConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM User WHERE username = ? AND password = ? ")){
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM User WHERE user_id = ? ")){
             int index = 1;
-            preparedStatement.setString(index++,username);
-            preparedStatement.setString(index++,password);
+            preparedStatement.setInt(index++,userId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if(resultSet.next()){
-                    login = new Login(resultSet);
+                    user = new User(resultSet);
                 }
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        return login;
+        return user;
     }
 }

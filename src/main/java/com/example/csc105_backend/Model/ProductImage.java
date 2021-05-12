@@ -7,6 +7,10 @@ public class ProductImage {
     int productId;
     String productPicUrl;
 
+    public ProductImage() {
+        super();
+    }
+
     public ProductImage(ResultSet resultSet)throws Exception{
         id=resultSet.getInt("id");
         productId=resultSet.getInt("product_id");
@@ -17,6 +21,7 @@ public class ProductImage {
         this.productId = productId;
         this.productPicUrl = productPicUrl;
     }
+
 
     public int getId() {
         return id;

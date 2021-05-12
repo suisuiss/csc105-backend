@@ -15,7 +15,7 @@ int userid;
     public Login(ResultSet resultSet)throws Exception{
         username = resultSet.getString("username");
         password = resultSet.getString("password");
-        userid=resultSet.getInt("userid");
+        userid=resultSet.getInt("user_id");
     }
 
     public String getUsername() {
