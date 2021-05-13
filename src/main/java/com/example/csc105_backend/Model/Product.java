@@ -11,11 +11,11 @@ public class Product {
     BigDecimal productPrice;
     int productAmount;
     String productDetails;
-    String productDesc;
+    String productDescription;
     String productCategory;
     String productPics;
 
-    public Product(int productId, int buyerId, int sellerId, String productName, BigDecimal productPrice, int productAmount, String productDetails, String productDesc, String productCategory,String productPics) {
+    public Product(int productId, int buyerId, int sellerId, String productName, BigDecimal productPrice, int productAmount, String productDetails, String productDescription, String productCategory,String productPics) {
         this.productId = productId;
         this.buyerId = buyerId;
         this.sellerId = sellerId;
@@ -23,7 +23,7 @@ public class Product {
         this.productPrice = productPrice;
         this.productAmount = productAmount;
         this.productDetails = productDetails;
-        this.productDesc = productDesc;
+        this.productDescription = productDescription;
         this.productCategory = productCategory;
         this.productPics=productPics;
     }
@@ -88,12 +88,12 @@ public class Product {
         this.productDetails = productDetails;
     }
 
-    public String getProductDesc() {
-        return productDesc;
+    public String getProductDescription() {
+        return productDescription;
     }
 
-    public void setProductDesc(String productDesc) {
-        this.productDesc = productDesc;
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 
     public String getProductCategory() {

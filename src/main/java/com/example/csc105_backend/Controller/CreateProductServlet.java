@@ -55,7 +55,7 @@ public class CreateProductServlet extends HttpServlet {
             product.setProductPrice(new BigDecimal(productPrice));
             product.setProductAmount(productAmount);
             product.setProductDetails(productDetails);
-            product.setProductDesc(productDescription);
+            product.setProductDescription(productDescription);
             product.setProductCategory(productCategory);
             product.setSellerId(Integer.valueOf(sellerID));
 

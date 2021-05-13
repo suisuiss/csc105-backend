@@ -23,7 +23,7 @@ public class ProductList {
                     product.setProductPrice(resultSet.getBigDecimal("product_price"));
                     product.setProductAmount(resultSet.getInt("product_amount"));
                     product.setProductDetails(resultSet.getString("product_details"));
-                    product.setProductDesc(resultSet.getString("product_desc"));
+                    product.setProductDescription(resultSet.getString("product_desc"));
                     product.setProductCategory(resultSet.getString("product_category"));
 
                     result.add(product);

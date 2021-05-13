@@ -23,7 +23,7 @@ public class GetProductByFilter {
                     bean.setProductPrice(rs.getBigDecimal("product_price"));
                     bean.setProductAmount(rs.getInt("product_amount"));
                     bean.setProductDetails(rs.getString("product_details"));
-                    bean.setProductDesc(rs.getString("product_desc"));
+                    bean.setProductDescription(rs.getString("product_desc"));
                     bean.setProductCategory(rs.getString("product_category"));
                     result.add(bean);
                 }
@@ -50,7 +50,7 @@ public class GetProductByFilter {
                     bean.setProductPrice(rs.getBigDecimal("product_price"));
                     bean.setProductAmount(rs.getInt("product_amount"));
                     bean.setProductDetails(rs.getString("product_details"));
-                    bean.setProductDesc(rs.getString("product_desc"));
+                    bean.setProductDescription(rs.getString("product_desc"));
                     bean.setProductCategory(rs.getString("product_category"));
                     result.add(bean);
                 }

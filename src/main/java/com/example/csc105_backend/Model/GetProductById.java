@@ -20,7 +20,7 @@ public class GetProductById {
                     result.setProductPrice(resultSet.getBigDecimal("product_price"));
                     result.setProductAmount(resultSet.getInt("product_amount"));
                     result.setProductDetails(resultSet.getString("product_details"));
-                    result.setProductDesc(resultSet.getString("product_desc"));
+                    result.setProductDescription(resultSet.getString("product_desc"));
                     result.setProductCategory(resultSet.getString("product_category"));
                 }
             }

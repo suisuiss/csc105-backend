@@ -30,7 +30,7 @@ public class DeleteProductServlet extends HttpServlet {
             DeleteProductImage deleteProductImage = new DeleteProductImage();
             DeleteProduct deleteProduct = new DeleteProduct();
             boolean result = deleteProductImage.deleteProductImage(productID);
-            if (result) {
+
                 File directory = new File(Constants.PATH_FILE +"\\"+productID+"\\");
                 if(directory.exists()) {
                     File[] files = directory.listFiles();
@@ -39,18 +39,16 @@ public class DeleteProductServlet extends HttpServlet {
                     }
                     result = directory.delete();
                 }
-                if(result) {
+
                     result = deleteProduct.deleteProduct(productID);
                     if(result) {
                         json = new Gson().toJson(result);
+                    }else{
+                        Error bean = new Error();
+                        bean.setErrorCode("400");
+                        bean.setErrorMsg("Fail to Delete Product");
+                        json = new Gson().toJson(bean);
                     }
-                }
-            } else {
-                Error bean = new Error();
-                bean.setErrorCode("400");
-                bean.setErrorMsg("Fail to Delete Product");
-                json = new Gson().toJson(bean);
-            }
 
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");

@@ -17,7 +17,7 @@ public class CreateProduct {
             preparedStatement.setBigDecimal(index++,product.getProductPrice());
             preparedStatement.setInt(index++,product.getProductAmount());
             preparedStatement.setString(index++,product.getProductDetails());
-            preparedStatement.setString(index++,product.getProductDesc());
+            preparedStatement.setString(index++,product.getProductDescription());
             preparedStatement.setString(index++,product.getProductCategory());
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
